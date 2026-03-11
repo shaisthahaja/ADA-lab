@@ -1,0 +1,10 @@
+int missingNumber(int* nums, int numsSize) {
+    int n=numsSize;
+    int exp = n*(n+1)/2;
+    int act=0;
+    for(int i=0;i<n;i++)
+    {
+        act+=nums[i];
+    }
+    return exp-act;
+}
