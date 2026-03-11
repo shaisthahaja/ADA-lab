@@ -1,0 +1,27 @@
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+ 
+int freq[201];
+int compare(const void* a, const void* b) {
+    int x = *(int*)a;
+    int y = *(int*)b;
+
+    if (freq[x + 100] == freq[y + 100])
+        return y - x;
+    return freq[x + 100] - freq[y + 100];
+}
+
+int* frequencySort(int* nums, int numsSize, int* returnSize) {
+    *returnSize = numsSize;
+
+    for (int i = 0; i < 201; i++)
+        freq[i] = 0;
+
+    for (int i = 0; i < numsSize; i++)
+        freq[nums[i] + 100]++;
+
+    qsort(nums, numsSize, sizeof(int), compare);
+
+    return nums;
+}
